@@ -1,0 +1,305 @@
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #FEE9E7;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffecec;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    nav a:hover {
+        color: #f28b82;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 40px 20px;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .hero-img {
+        width: 100%;
+        margin: auto;
+        /* border-radius: 6%; */
+        object-fit: cover;
+    }
+
+    .container {
+        width: 100%;
+        position: relative;
+    }
+
+    .services {
+        display: flex;
+        margin: auto;
+        flex-wrap: wrap;
+        gap: 85px;
+        justify-content: center;
+        max-width: 1200px;
+        padding: 20px;
+    }
+
+    .service-card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        text-align: center;
+        flex: 1 1 300px;
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .services-img {
+        width: 100px;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .cta-button {
+        display: block;
+        width: max-content;
+        margin: 30px auto;
+        padding: 12px 25px;
+        background-color: #FCB3AD;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .cta-button:hover {
+        background-color: #e06a63;
+    }
+
+    .footer {
+        background-color: #FEE9E7;
+        /* Warna latar belakang footer seperti gambar */
+        padding: 40px 20px;
+        /* Padding atas/bawah dan kiri/kanan */
+        color: #333;
+        box-sizing: border-box;
+        /* Pastikan padding termasuk dalam total lebar/tinggi */
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        /* Memberi ruang di antara bagian */
+        flex-wrap: wrap;
+        /* Penting untuk responsivitas */
+        max-width: 1200px;
+        /* Batasi lebar container footer */
+        margin: 0 auto;
+        /* Pusatkan container */
+        gap: 30px;
+        /* Jarak antar bagian footer */
+        align-items: flex-start;
+        /* Mengatur item agar sejajar di bagian atas */
+    }
+
+    .footer-section {
+        flex: 1;
+        /* Setiap bagian akan mencoba mengambil ruang yang sama */
+        min-width: 280px;
+        /* Lebar minimum sebelum flex-wrap aktif */
+        padding: 10px;
+        /* Sedikit padding internal */
+
+    }
+
+    .footer-section h4 {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 15px;
+        margin-top: 0;
+        font-weight: bold;
+        /* Sesuai gambar */
+    }
+
+    .footer-section ul {
+        list-style: none;
+        /* Menghilangkan bullet point default */
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+    }
+
+    .footer-section ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .kontak .kontak-item {
+        display: flex;
+        align-items: flex-start;
+        /* Agar ikon dan teks sejajar di bagian atas */
+        margin-bottom: 15px;
+    }
+
+    .kontak .kontak-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .kontak .kontak-item img {
+        font-size: 1.5em;
+        /* Ukuran ikon */
+        margin-right: 15px;
+        /* Jarak antara ikon dan teks */
+        color: #333;
+        /* Warna ikon */
+        margin-top: 2px;
+        /* Penyesuaian vertikal agar sejajar dengan baris pertama teks */
+    }
+
+    .kontak .kontak-item p {
+        margin: 0;
+        /* Menghilangkan margin default paragraf */
+        font-size: 0.95em;
+        line-height: 1.5;
+        /* Jarak antar baris teks */
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: 1242px) {
+        body {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .services {
+            gap: 40px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            /* Tumpuk bagian secara vertikal */
+            align-items: center;
+            /* Pusatkan item */
+            text-align: center;
+            /* Pusatkan teks */
+            gap: 40px;
+            /* Jarak lebih besar antar bagian yang ditumpuk */
+        }
+
+        .footer-section {
+            min-width: unset;
+            /* Hapus min-width agar bisa mengambil lebar penuh */
+            width: 100%;
+            /* Ambil lebar penuh */
+            padding: 0;
+            /* Hapus padding internal jika tidak diperlukan */
+        }
+
+        .footer-section h4 {
+            margin-bottom: 10px;
+            /* Kurangi margin untuk judul di mobile */
+        }
+
+        .footer-section ul {
+            width: fit-content;
+            /* Untuk memusatkan daftar */
+            margin: 0 auto;
+            /* Memusatkan daftar item */
+        }
+
+        .kontak .kontak-item {
+            flex-direction: column;
+            /* Tumpuk ikon dan teks secara vertikal */
+            align-items: center;
+            /* Pusatkan ikon dan teks */
+            text-align: center;
+            /* Pusatkan teks */
+            margin-bottom: 20px;
+            /* Jarak antar item kontak */
+        }
+
+        .kontak .kontak-item i {
+            margin-right: 0;
+            /* Hapus margin kanan ikon */
+            margin-bottom: 10px;
+            /* Beri jarak di bawah ikon */
+        }
+
+        .footer {
+            padding: 30px 15px;
+            /* Sesuaikan padding footer di mobile */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .footer-section h4 {
+            font-size: 1.1em;
+        }
+
+        .footer-section ul li,
+        .kontak .kontak-item p {
+            font-size: 0.9em;
+        }
+
+        .kontak .kontak-item i {
+            font-size: 1.3em;
+        }
+    }
+
+    
