@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    @if ($errors->any())
+    <div id="error-popup" class="popup-error">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div class="background-overlay"></div>
     <div class="login-container">
         <div class="login-card">
@@ -32,6 +42,19 @@
 
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('error-popup');
+            if (popup) {
+                setTimeout(() => {
+                    popup.style.transition = 'opacity 0.5s, transform 0.5s';
+                    popup.style.opacity = 0;
+                    popup.style.transform = 'translate(-50%, -20px)';
+                    setTimeout(() => popup.remove(), 500);
+                }, 4000); // visible for 4 seconds
+            }
+        });
+    </script>
 </body>
 
 </html>

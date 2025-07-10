@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,18 +24,20 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $url = "";
-        
+
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if ($request->user()->role === "admin") {
-                $url = "admin/index";
+                return redirect()->intended('admin/index');
             } else {
-                $url = "/";
+                return redirect()->intended('/');
             }
         }
-        return redirect()->intended($url);
+        return back()->withErrors([
+            'email' => 'Email or password is incorrect.',
+        ])->withInput();
     }
 
     public function register()
@@ -42,7 +45,27 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public function registerCreate() {}
+    public function registerCreate(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        // Create user
+        $user = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
+
+        // // Log in the user (optional)
+        // Auth::login($user);
+
+        // Redirect with success message
+        return redirect()->route('login')->with('success', 'Pendaftaran berhasil. Selamat datang!');
+    }
 
     public function logout(): RedirectResponse
     {

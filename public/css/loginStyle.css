@@ -555,3 +555,43 @@ body {
         font-size: 0.8em;
     }
 }
+
+.popup-error {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffe4e6;
+    /* soft pink background */
+    color: #b71c1c;
+    /* deep pinkish red for text */
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideDownFade 0.5s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+.popup-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.popup-error li {
+    font-size: 1rem;
+}
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
