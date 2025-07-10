@@ -1,62 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IQ-LO Laundry</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Katalog Harga - IQ-LO Laundry</title>
+    <link rel="stylesheet" href="{{ asset('css/katalog-style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <header>
-        <h1>IQ-LO LAUNDRY</h1>
-        <nav>
-            <a href="#" >Beranda</a>
-            <a href="#">Katalog Harga</a>
-            <a href="#">Kontak & Pemesanan</a>
-            <a href="{{ route('login') }}">Sign in</a>
-            <a href="{{ route('register') }}">Register</a>
-        </nav>
+        <div class="container">
+            <a href="#" class="logo">IQ-LO LAUNDRY</a>
+            <nav>
+                <ul>
+                    <li><a href="{{ route ('landingPage') }}" class="{{ request()->routeIs('landingPage') ? 'active' : '' }}">Beranda</a></li>
+                    <li><a href="{{ route ('katalogPage') }}" class="{{ request()->routeIs('katalogPage') ? 'active' : '' }}">Katalog Harga</a></li>
+                    <li><a href="#">Kontak & Pemesanan</a></li>
+                    @if(Auth::user())
+                    <form action="{{route ('logout')}}" method="post">
+                        @csrf
+                        <li><button type="submit" class="btn-logout">LogOut</button></li>
+                    </form>
+                    @else
+                    <li><a href="{{ route('login') }}" class="btn-signin">Sign In</a></li>
+                    @endif
+                </ul>
+            </nav>
+        </div>
     </header>
 
     {{ $slot }}
-
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section layanan-kami">
-                <h4>Pelayanan Kami:</h4>
-                <ul>
-                    <li>> Laundry Express</li>
-                    <li>> Laundry Member</li>
-                    <li>> Laundry Kiloan</li>
-                    <li>> Laundry Tas</li>
-                    <li>> Laundry Sepatu</li>
-                    <li>> Laundry Jas</li>
-                    <li>> Laundry Bedcover dan sprey</li>
-                    <li>> Laundry Handuk</li>
-                </ul>
-            </div>
-
-            <div class="footer-section kontak">
-                <div class="kontak-item">
-                    <img src="img/map.png" alt="">
-                    <p>Ruko Petak 3, Jl.Perkasa No 59 B, Kel, Jl. Bambu Kuning, Rejosari, Kec. Tenayan Raya, Kota Pekanbaru, Riau 28151</p>
-                </div>
-                <div class="kontak-item">
-                    <img src="img/phone.png" alt="">
-                    <p>+62 812-3456-7890 (Contoh)</p>
-                </div>
-                <div class="kontak-item">
-                    <img src="img/email.png" alt="">
-                    <p>info@laundryanda.com (Contoh)</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    {{$java}}
+    {!! $footer ?? '' !!}
+    {!! $javascript ?? '' !!}
 </body>
 
 </html>

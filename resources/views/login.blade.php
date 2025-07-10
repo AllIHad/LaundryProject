@@ -15,7 +15,8 @@
         <div class="login-card">
             <h2>Form Login</h2>
 
-            <form action="#" method="POST" class="login-form">
+            <form action="{{ route('authenticate') }}" method="POST" class="login-form">
+                @csrf
                 <div class="input-group">
                     <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
                 </div>

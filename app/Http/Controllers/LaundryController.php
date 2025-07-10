@@ -9,4 +9,8 @@ class LaundryController extends Controller
     public function landingPage(){
         return view ('welcome');
     }
+
+    public function katalogPage(){
+        return view ('laundry.katalog');
+    }
 }
