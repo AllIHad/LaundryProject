@@ -16,15 +16,15 @@
         </section>
 
         <section class="order-history">
-            <h2>Riwayat Pesanan</h2>
+            <h2>Member Laundry</h2>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>ID Pesanan</th>
+                            <th>ID kotumer</th>
                             <th>Nama Kostumer</th>
-                            <th>Tanggal Pemesanan</th>
-                            <th>Status</th>
+                            <th>Total Berat</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>

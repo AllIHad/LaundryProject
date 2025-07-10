@@ -29,7 +29,11 @@
             </div>
         </section>
 
-        <button class="cta-button" onclick="alert('Terima kasih telah mendaftar sebagai member IQ-LO Laundry!')">Daftar Sekarang</button>
+        @if(Auth::user())
+        <a class="cta-button" href="#">Daftar Sekarang</a>
+        @else
+        <a class="cta-button" href="{{ route('login') }}">Daftar Sekarang</a>
+        @endif
     </main>
 
     <x-slot:footer>

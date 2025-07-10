@@ -33,7 +33,6 @@
                 <div class="input-group">
                     <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
                 </div>
-                <a href="#" class="forgot-password">Lupa Password?</a>
 
                 <button type="submit" class="btn-login">Login</button>
             </form>

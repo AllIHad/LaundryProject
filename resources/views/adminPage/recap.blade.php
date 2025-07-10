@@ -22,7 +22,7 @@
                         <th>Berat</th>
                         <th>Pesanan</th>
                         <th>Layanan</th>
-                        <th>Pembayaran</th>
+                        <th>Total Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +34,7 @@
                         <td>5kg</td>
                         <td>Cuci Setrika Pakaian</td>
                         <td>Member</td>
-                        <td>Lunas</td>
+                        <td>Rp 48.000</td>
                     </tr>
                     <tr>
                         <td>2.</td>
@@ -44,7 +44,7 @@
                         <td>2kg</td>
                         <td>Cuci Setrika Jas</td>
                         <td>Express</td>
-                        <td>Lunas (COD)</td>
+                        <td>Rp 48.000</td>
                     </tr>
                     <tr>
                         <td>3.</td>
@@ -54,7 +54,7 @@
                         <td>8kg</td>
                         <td>Cuci Kering Selimut</td>
                         <td>Reguler</td>
-                        <td>Lunas</td>
+                        <td>Rp 48.000</td>
                     </tr>
                 </tbody>
             </table>
