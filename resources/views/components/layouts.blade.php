@@ -20,7 +20,7 @@
                 <ul>
                     <li><a href="{{ route ('landingPage') }}" class="{{ request()->routeIs('landingPage') ? 'active' : '' }}">Beranda</a></li>
                     <li><a href="{{ route ('katalogPage') }}" class="{{ request()->routeIs('katalogPage') ? 'active' : '' }}">Katalog Harga</a></li>
-                    <li><a href="#">Kontak & Pemesanan</a></li>
+                    <li><a href="{{ route ('kontak_pemesananPage') }}" class="{{ request()->routeIs('kontak_pemesananPage') ? 'active' : '' }}">Kontak & Pemesanan</a></li>
                     @if(Auth::user())
                     <form action="{{route ('logout')}}" method="post">
                         @csrf
