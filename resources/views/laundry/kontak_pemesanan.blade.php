@@ -12,7 +12,15 @@
     <main class="contact-main">
         <div class="order-form-container">
             <h2>ORDER<br>DISINI</h2>
-            <form action="{{ route('order.store') }}" method="post">
+
+            {{-- Ini adalah kode untuk menampilkan pesan error dari session --}}
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            
+            <form action="{{ route('order.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <input type="text" placeholder="Masukkan Nama Anda" name="nama">
