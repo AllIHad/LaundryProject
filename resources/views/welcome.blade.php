@@ -30,7 +30,7 @@
         </section>
 
         @if(Auth::user())
-        <a class="cta-button" href="#">Daftar Sekarang</a>
+        <a class="cta-button" href="{{ route('daftar_memberPage') }}">Daftar Sekarang</a>
         @else
         <a class="cta-button" href="{{ route('login') }}">Daftar Sekarang</a>
         @endif

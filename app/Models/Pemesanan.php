@@ -8,7 +8,7 @@ class Pemesanan extends Model
 {
     //
     protected $fillable = [
-        'user id',
+        'user_id',
         'nama',
         'telp',
         'email',
@@ -16,6 +16,8 @@ class Pemesanan extends Model
         'jenis_pemesanan',
         'jenis_layanan',
         'tanggal_penjemputan',
+        'jam_penjemputan',
+        'pengiriman',
         'status',
         'berat',
         'total_harga',

@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('alamat_penjemputan');
             $table->string('jenis_pemesanan');
             $table->string('jenis_layanan');
-            $table->string('tanggal_penjemputan');
-            $table->string('status');
-            $table->integer('berat');
-            $table->integer('total_harga');
+            $table->date('tanggal_penjemputan');
+            $table->time('jam_penjemputan');
+            $table->string('pengiriman');
+            $table->string('status')->default('pending');
+            $table->integer('berat')->nullable();
+            $table->integer('total_harga')->nullable();
             $table->timestamps();
         });
     }

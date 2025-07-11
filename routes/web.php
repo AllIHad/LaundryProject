@@ -9,9 +9,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // navbar page 
 Route::get('/', [LaundryController::class, 'landingPage'])->name('landingPage');
 Route::get('/katalog', [LaundryController::class, 'katalogPage'])->name('katalogPage');
-Route::get('/kontak-pemesanan', [LaundryController::class, 'kontak_pemesananPage'])->name('kontak_pemesananPage');
-Route::get('/daftar-member', [LaundryController::class, 'daftarmemberPage'])->name('daftar_memberPage');
 Route::get('/konfirmasi-pesanan', [LaundryController::class, 'konfirmasipesananPage'])->name('konfirmasi_pesananPage');
+
+Route::middleware(['auth','role:user'])->group(function(){
+Route::get('/kontak-pemesanan', [LaundryController::class, 'kontak_pemesananPage'])->name('kontak_pemesananPage');
+Route::post('/order', [LaundryController::class, 'store'])->name('order.store');
+Route::get('/daftar-member', [LaundryController::class, 'daftarmemberPage'])->name('daftar_memberPage');
+});
 
 // authentikasi
 Route::get('/login', [AuthController::class, 'login'])->name('login');

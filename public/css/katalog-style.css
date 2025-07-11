@@ -496,13 +496,11 @@ header nav a.active {
 
 /* Latar Belakang Bergaris untuk Halaman Kontak */
 body.contact-page-bg {
-    background-image: repeating-linear-gradient(
-        to bottom,
-        #FFFAFB,
-        #FFFAFB 25px,
-        #FCEEF3 25px,
-        #FCEEF3 50px
-    );
+    background-image: repeating-linear-gradient(to bottom,
+            #FFFAFB,
+            #FFFAFB 25px,
+            #FCEEF3 25px,
+            #FCEEF3 50px);
 }
 
 /* Penyesuaian Tombol Header */
@@ -513,14 +511,17 @@ body.contact-page-bg {
     border: 1px solid transparent;
     transition: opacity 0.3s;
 }
+
 .btn-pill:hover {
     opacity: 0.9;
 }
+
 .btn-signin {
     background-color: #f0f0f0;
     border-color: #ddd;
     color: var(--text-dark);
 }
+
 .btn-register {
     background-color: #F7C5D4;
     color: var(--text-dark);
@@ -531,7 +532,8 @@ body.contact-page-bg {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 90px); /* (100% tinggi layar - tinggi header) */
+    min-height: calc(100vh - 90px);
+    /* (100% tinggi layar - tinggi header) */
     padding: 2rem;
 }
 
@@ -542,7 +544,7 @@ body.contact-page-bg {
     border-radius: 24px;
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .order-form-container h2 {
@@ -598,7 +600,7 @@ body.contact-page-bg {
 
 /* Gaya untuk Header Tombol Register Aktif */
 .btn-register.active {
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
     opacity: 0.9;
 }
 
@@ -619,7 +621,8 @@ body.contact-page-bg {
 }
 
 .radio-option label {
-    font-weight: 500 !important; /* Override a more general label style */
+    font-weight: 500 !important;
+    /* Override a more general label style */
     margin-bottom: 0 !important;
 }
 
@@ -696,18 +699,19 @@ body.contact-page-bg {
     background-color: var(--white);
     border: 1.5px solid var(--text-dark);
     padding: 0.6rem 0.7rem 0.6rem 1.5rem;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
+    /* Pill shape */
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 600;
     font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
 .btn-whatsapp:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 .btn-whatsapp .whatsapp-logo {
@@ -745,4 +749,44 @@ body.contact-page-bg {
     display: flex;
     gap: 1.5rem;
     margin-top: 0.5rem;
+}
+
+.popup-error {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffe4e6;
+    /* soft pink background */
+    color: #b71c1c;
+    /* deep pinkish red for text */
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideDownFade 0.5s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+.popup-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.popup-error li {
+    font-size: 1rem;
+}
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
