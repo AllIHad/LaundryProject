@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('tanggal_penjemputan');
             $table->time('jam_penjemputan');
             $table->string('pengiriman');
-            $table->string('status')->default('pending');
+            $table->string('status')->default('Pending');
             $table->decimal('berat')->nullable();
             $table->decimal('total_harga')->nullable();
             $table->timestamps();

@@ -30,7 +30,7 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/index', [AdminController::class, 'index'])->name('index');
     Route::get('/daftar-pesanan', [AdminController::class, 'daftarPesanan'])->name('daftarPesanan');
     Route::get('/pesanan-baru', [AdminController::class, 'pesananBaru'])->name('pesananBaru');
-    Route::get('/recap', [AdminController::class, 'recap'])->name('recap');
+    Route::get('/recap/{month?}', [AdminController::class, 'recap'])->name('recap');
     Route::get('/pesanan-baru/{slug}', [AdminController::class, 'edit'])->name('edit');
     Route::put('/store/{slug}', [AdminController::class, 'store'])->name('store');
     Route::put('/approve/{slug}', [AdminController::class, 'approve'])->name('approve');

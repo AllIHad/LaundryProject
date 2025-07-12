@@ -6,7 +6,7 @@ use App\Models\Membership;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon; 
+use Illuminate\Support\Carbon;
 
 class LaundryController extends Controller
 {
@@ -53,39 +53,38 @@ class LaundryController extends Controller
         // Tambahkan user_id dari user yang sedang login
         $validated['user_id'] = Auth::id();
 
-         try {
+        try {
             Pemesanan::create($validated);
-
         } catch (\Exception $e) {
             // Jika gagal simpan ke DB, kembalikan ke form dengan pesan error
             return back()->with('error', 'Gagal menyimpan pesanan. Silakan coba lagi.');
         }
         // =======================================================
-        
+
         // Menggunakan Carbon untuk memformat tanggal agar lebih mudah dibaca
         $tanggalFormatted = Carbon::parse($validated['tanggal_penjemputan'])->isoFormat('dddd, D MMMM YYYY');
-        
-      
+
+
         // Buat format pesan WhatsApp 
         $pesan = "Halo Admin, saya mau pesan laundry.\n\n" .
-         "Nama Pelanggan: *" . $validated['nama'] . "*\n" .
-         "No. Telepon: " . $validated['telp'] . "\n" .
-         "Alamat Penjemputan: " . $validated['alamat_penjemputan'] . "\n" .
-         "Jenis Pemesanan: " . $validated['jenis_pemesanan'] . "\n" .
-         "Jenis Layanan: " . $validated['jenis_layanan'] . "\n" .
-         "Tanggal Penjemputan: " . $tanggalFormatted . "\n" .
-         "Jam Penjemputan: " . $validated['jam_penjemputan'] . "\n" .
-         "Pengiriman: " . $validated['pengiriman'] . "\n\n" .
-         "Mohon segera diproses ya. Terima kasih!";
+            "Nama Pelanggan: *" . $validated['nama'] . "*\n" .
+            "No. Telepon: " . $validated['telp'] . "\n" .
+            "Alamat Penjemputan: " . $validated['alamat_penjemputan'] . "\n" .
+            "Jenis Pemesanan: " . $validated['jenis_pemesanan'] . "\n" .
+            "Jenis Layanan: " . $validated['jenis_layanan'] . "\n" .
+            "Tanggal Penjemputan: " . $tanggalFormatted . "\n" .
+            "Jam Penjemputan: " . $validated['jam_penjemputan'] . "\n" .
+            "Pengiriman: " . $validated['pengiriman'] . "\n\n" .
+            "Mohon segera diproses ya. Terima kasih!";
 
 
-               // Tentukan nomor WhatsApp Admin (tetap sama)
+        // Tentukan nomor WhatsApp Admin (tetap sama)
         $nomorAdmin = env('WHATSAPP_ADMIN_NUMBER', '6281266567456');
         //  Buat URL WhatsApp (tetap sama)
         $whatsappUrl = "https://wa.me/{$nomorAdmin}?text=" . urlencode($pesan);
 
 
-        
+
         //  Redirect pengguna ke URL WhatsApp (tetap sama)
         return redirect()->away($whatsappUrl);
 

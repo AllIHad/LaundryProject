@@ -1,14 +1,16 @@
 <x-adminLayouts>
     <main class="container">
         <nav class="month-tabs">
-            <a href="#">Januari</a>
-            <a href="#">Februari</a>
-            <a href="#">Maret</a>
-            <a href="#">April</a>
-            <a href="#">Mei</a>
-            <a href="#">Juni</a>
-            <a href="#" class="active">Juli</a>
-            <a href="#">Agustus</a>
+            <a href="{{ route('recap', 'all') }}" class="{{ request()->is('admin/recap/all') ? 'active' : '' }}">All</a>
+            @foreach([
+            '01'=>'Januari','02'=>'Februari','03'=>'Maret','04'=>'April',
+            '05'=>'Mei','06'=>'Juni','07'=>'Juli','08'=>'Agustus',
+            '09'=>'September','10'=>'Oktober','11'=>'November','12'=>'Desember'
+            ] as $num => $month)
+            <a href="{{ route('recap', ['month' => $num]) }}" class="{{ request('month') == $num ? 'active' : '' }}">
+                {{ $month }}
+            </a>
+            @endforeach
         </nav>
 
         <div class="table-container recap-table">
@@ -31,7 +33,7 @@
                         <td class="text-center">{{ $loop->iteration }}</td>
                         <td class="text-center">{{ $pesanan->id }}</td>
                         <td class="text-center">{{ $pesanan->nama}}</td>
-                        <td class="text-center">{{ \Carbon\Carbon::parse($pesanan->created_at)->translatedFormat('l, d-m-Y') }}</td>
+                        <td class="text-center">{{ \Carbon\Carbon::parse($pesanan->created_at)->translatedFormat('d-m-Y') }}</td>
                         <td class="text-center">{{ $pesanan->berat }} KG</td>
                         <td class="text-center">{{ $pesanan->jenis_pemesanan }}</td>
                         <td class="text-center">{{ $pesanan->jenis_layanan }}</td>
@@ -39,7 +41,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" style="text-align:center; padding: 1rem; color: #888;">
+                        <td colspan="8" style="text-align:center; padding: 1rem; color: #888;">
                             Tidak ada data pesanan yang tersedia.
                         </td>
                     </tr>
@@ -50,14 +52,7 @@
     </main>
 
     <script>
-        document.querySelectorAll('.main-nav a').forEach(link => {
-            link.addEventListener('click', function() {
-                // Remove active from all
-                document.querySelectorAll('.main-nav a').forEach(l => l.classList.remove('active'));
-                // Add active to clicked link
-                this.classList.add('active');
-            });
-        });
+
     </script>
 
 </x-adminLayouts>

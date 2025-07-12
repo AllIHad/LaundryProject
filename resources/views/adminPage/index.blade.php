@@ -21,9 +21,9 @@
                 <table>
                     <thead>
                         <tr>
+                            <th class="text-center">ID</th>
                             <th class="text-center">Nama Kostumer</th>
                             <th class="text-center">Email</th>
-                            <th class="text-center">No. Handphone</th>
                             <th class="text-center">Total Berat</th>
                             <th class="text-center">Aksi</th>
                         </tr>
@@ -31,9 +31,9 @@
                     <tbody>
                         @forelse($members as $member)
                         <tr>
+                            <td class="text-center">{{ $member->id }}</td>
                             <td class="text-center">{{ $member->nama }}</td>
                             <td class="text-center">{{ $member->email }}</td>
-                            <td class="text-center">{{ $member->member}}</td>
                             <td class="text-center">{{ $member->member}}</td>
                             <td class="text-center">{{ $member->user_id }}</td>
                         </tr>

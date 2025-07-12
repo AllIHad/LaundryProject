@@ -34,11 +34,11 @@
                 <div class="form-group">
                     <label>Pilih Paket Member</label>
                     <div class="radio-option">
-                        <input type="radio" id="paket1" name="member" value="30kg" checked>
+                        <input type="radio" id="paket1" name="member" value="30" checked>
                         <label for="paket1">30 kg / Rp 150.000</label>
                     </div>
                     <div class="radio-option">
-                        <input type="radio" id="paket2" name="member" value="50kg">
+                        <input type="radio" id="paket2" name="member" value="50">
                         <label for="paket2">50 kg / Rp 250.000</label>
                     </div>
                 </div>

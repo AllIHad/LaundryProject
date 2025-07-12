@@ -21,7 +21,7 @@ class AdminController extends Controller
 
     public function daftarPesanan()
     {
-        $pemesanan = Pemesanan::whereIn('status', ['pending', 'process'])->latest()->get();
+        $pemesanan = Pemesanan::whereIn('status', ['Pending', 'Process'])->latest()->get();
 
         return view('adminPage.daftarPesanan', compact('pemesanan'));
     }
@@ -31,14 +31,22 @@ class AdminController extends Controller
         return view('adminPage.pesananBaru');
     }
 
-    public function recap()
+    public function recap(Request $request, $month = null)
     {
-        $pesanans = Pemesanan::where('status', 'finished')
-            ->whereMonth('created_at', 7) // 7 = July
-            ->whereYear('created_at', 2025) // use current year
-            ->latest()
-            ->get();
+        if ($month == 'all') {
+            // Show all data
+            $pesanans = Pemesanan::where('status', 'finished')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            // Show data for a specific month, default to current month
+            $month = $month ?? now()->format('m');
 
+            $pesanans = Pemesanan::whereMonth('created_at', $month)
+                ->where('status', 'finished')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
 
         return view('adminPage.recap', compact('pesanans'));
     }
@@ -63,13 +71,32 @@ class AdminController extends Controller
 
         $pesanan = Pemesanan::where('id', $slug)->firstOrFail();
 
+        // Default harga
+        $harga = $request->harga;
+
+        if ($request->jenis_layanan == 'Member') {
+            $membership = Membership::where('user_id', $pesanan->user_id)->first();
+
+            if ($membership) {
+                $sisa_kuota = $membership->member - $request->berat;
+
+                if ($sisa_kuota >= 0) {
+                    $harga = 0; // set harga to 0
+                    // update membership kuota
+                    $membership->member = $sisa_kuota;
+                    $membership->save();
+                }
+            }
+        }
+
         $pesanan->update([
             'nama' => $request->nama,
             'jenis_pemesanan' => $request->jenis_pemesanan,
             'telp' => $request->telp,
             'jenis_layanan' => $request->jenis_layanan,
             'berat' => $request->berat,
-            'total_harga' => $request->harga,
+            'total_harga' => $harga,
+            'status' => 'Process',
         ]);
 
         return redirect()->route('daftarPesanan');
