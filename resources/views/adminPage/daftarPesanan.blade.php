@@ -24,7 +24,7 @@
                             <td class="text-center">{{ \Carbon\Carbon::parse($pesan->created_at)->translatedFormat('l, d-m-Y') }}</td>
                             <td class="text-center">{{ $pesan->status}}</td>
                             <td class="text-center">{{ $pesan->total_harga}}</td>
-                            @if($pesan->status == 'pending')
+                            @if($pesan->status == 'Pending')
                             <td class="text-center">
                                 <a href="{{ route('edit', $pesan->id) }}" class="icon-btn" title="Lihat">
                                     <img src="img/detail-icon.svg" alt="detail order">

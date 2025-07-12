@@ -34,7 +34,7 @@
                             <td class="text-center">{{ $member->id }}</td>
                             <td class="text-center">{{ $member->nama }}</td>
                             <td class="text-center">{{ $member->email }}</td>
-                            <td class="text-center">{{ $member->member}}</td>
+                            <td class="text-center">{{ $member->member}} KG</td>
                             <td class="text-center">{{ $member->user_id }}</td>
                         </tr>
                         @empty
