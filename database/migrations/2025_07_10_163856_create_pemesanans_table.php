@@ -24,8 +24,8 @@ return new class extends Migration
             $table->time('jam_penjemputan');
             $table->string('pengiriman');
             $table->string('status')->default('pending');
-            $table->integer('berat')->nullable();
-            $table->integer('total_harga')->nullable();
+            $table->decimal('berat')->nullable();
+            $table->decimal('total_harga')->nullable();
             $table->timestamps();
         });
     }

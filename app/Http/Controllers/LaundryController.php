@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,5 +54,27 @@ class LaundryController extends Controller
         Pemesanan::create($validated);
 
         return redirect()->route('konfirmasi_pesananPage')->with('success', 'Your order is successfully placed');
+    }
+
+    public function memberStore(Request $request)
+    {
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+            'member' => 'required|in:30kg,50kg',
+        ], [
+            'required' => ':attribute is required',
+            'email' => 'Email is not  valid',
+            'unique' => 'Email is already registered',
+            'confirmed' => 'Confirm password does not match',
+            'min' => 'Minimum Password: min 8 characters.',
+        ]);
+
+        $validated['user_id'] = Auth::id();
+
+        Membership::create($validated);
+
+        return redirect()->route('landingPage')->with('success', 'Member registration successful!');
     }
 }

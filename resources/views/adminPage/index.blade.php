@@ -3,15 +3,15 @@
         <section class="summary-cards">
             <div class="card">
                 <h2>Pesanan Baru</h2>
-                <p class="number">4</p>
+                <p class="number">{{ $pemesananBaru }}</p>
             </div>
             <div class="card">
                 <h2>Proses</h2>
-                <p class="number">24</p>
+                <p class="number">{{ $pemesananProcess }}</p>
             </div>
             <div class="card">
                 <h2>Selesai</h2>
-                <p class="number">32</p>
+                <p class="number">{{ $pemesananFinished }}</p>
             </div>
         </section>
 
@@ -21,37 +21,29 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>ID kotumer</th>
-                            <th>Nama Kostumer</th>
-                            <th>Total Berat</th>
-                            <th>Aksi</th>
+                            <th class="text-center">Nama Kostumer</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">No. Handphone</th>
+                            <th class="text-center">Total Berat</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($members as $member)
                         <tr>
-                            <td>LNDRY-001</td>
-                            <td>Budi Santoso</td>
-                            <td>08-07-2025</td>
-                            <td>Selesai</td>
+                            <td class="text-center">{{ $member->nama }}</td>
+                            <td class="text-center">{{ $member->email }}</td>
+                            <td class="text-center">{{ $member->member}}</td>
+                            <td class="text-center">{{ $member->member}}</td>
+                            <td class="text-center">{{ $member->user_id }}</td>
                         </tr>
+                        @empty
                         <tr>
-                            <td>LNDRY-002</td>
-                            <td>Citra Lestari</td>
-                            <td>08-07-2025</td>
-                            <td>Proses</td>
+                            <td colspan="5" style="text-align:center; padding: 1rem; color: #888;">
+                                Tidak ada data pesanan yang tersedia.
+                            </td>
                         </tr>
-                        <tr>
-                            <td>LNDRY-003</td>
-                            <td>Ahmad Dahlan</td>
-                            <td>07-07-2025</td>
-                            <td>Selesai</td>
-                        </tr>
-                        <tr>
-                            <td>LNDRY-004</td>
-                            <td>Dewi Anggraini</td>
-                            <td>09-07-2025</td>
-                            <td>Pesanan Baru</td>
-                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

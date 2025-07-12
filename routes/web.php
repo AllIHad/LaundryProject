@@ -15,6 +15,7 @@ Route::middleware(['auth','role:user'])->group(function(){
 Route::get('/kontak-pemesanan', [LaundryController::class, 'kontak_pemesananPage'])->name('kontak_pemesananPage');
 Route::post('/order', [LaundryController::class, 'store'])->name('order.store');
 Route::get('/daftar-member', [LaundryController::class, 'daftarmemberPage'])->name('daftar_memberPage');
+Route::post('/member-store', [LaundryController::class, 'memberStore'])->name('member.store');
 });
 
 // authentikasi
@@ -30,4 +31,8 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/daftar-pesanan', [AdminController::class, 'daftarPesanan'])->name('daftarPesanan');
     Route::get('/pesanan-baru', [AdminController::class, 'pesananBaru'])->name('pesananBaru');
     Route::get('/recap', [AdminController::class, 'recap'])->name('recap');
+    Route::get('/pesanan-baru/{slug}', [AdminController::class, 'edit'])->name('edit');
+    Route::put('/store/{slug}', [AdminController::class, 'store'])->name('store');
+    Route::put('/approve/{slug}', [AdminController::class, 'approve'])->name('approve');
+    Route::delete('/pesanan-baru/{slug}', [AdminController::class, 'delete'])->name('delete');
 });

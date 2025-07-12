@@ -14,7 +14,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-    
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-light-pink);
@@ -73,7 +73,8 @@ body {
     gap: 2rem;
     justify-content: center;
     margin-bottom: 3rem;
-    flex-wrap: wrap; /* Agar responsif */
+    flex-wrap: wrap;
+    /* Agar responsif */
 }
 
 .card {
@@ -83,7 +84,8 @@ body {
     box-shadow: var(--shadow);
     text-align: center;
     flex: 1;
-    min-width: 200px; /* Lebar minimum kartu */
+    min-width: 200px;
+    /* Lebar minimum kartu */
 }
 
 .card h2 {
@@ -113,7 +115,8 @@ body {
 }
 
 .table-container {
-    overflow-x: auto; /* Membuat tabel bisa di-scroll horizontal di layar kecil */
+    overflow-x: auto;
+    /* Membuat tabel bisa di-scroll horizontal di layar kecil */
 }
 
 table {
@@ -121,7 +124,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-light);
@@ -153,6 +157,7 @@ tbody tr:hover {
     .container {
         padding: 1.5rem;
     }
+
     .summary-cards {
         gap: 1.5rem;
     }
@@ -161,7 +166,8 @@ tbody tr:hover {
 /* Untuk Mobile */
 @media (max-width: 768px) {
     .main-nav ul {
-        flex-wrap: wrap; /* Menu akan turun ke bawah jika tidak muat */
+        flex-wrap: wrap;
+        /* Menu akan turun ke bawah jika tidak muat */
         justify-content: center;
     }
 
@@ -170,7 +176,8 @@ tbody tr:hover {
     }
 
     .summary-cards {
-        flex-direction: column; /* Kartu akan tersusun vertikal */
+        flex-direction: column;
+        /* Kartu akan tersusun vertikal */
         gap: 1rem;
     }
 
@@ -223,8 +230,10 @@ tbody tr:hover {
     background-color: var(--bg-light-pink);
     padding: 2.5rem;
     border-radius: 12px;
-    max-width: 600px; /* Lebar maksimal form agar tidak terlalu lebar di desktop */
-    margin: 0 auto; /* Membuat form berada di tengah */
+    max-width: 600px;
+    /* Lebar maksimal form agar tidak terlalu lebar di desktop */
+    margin: 0 auto;
+    /* Membuat form berada di tengah */
 }
 
 .form-group {
@@ -300,7 +309,8 @@ tbody tr:hover {
 /* Navigasi Tab Bulan */
 .month-tabs {
     display: flex;
-    flex-wrap: wrap; /* Agar rapi di mobile */
+    flex-wrap: wrap;
+    /* Agar rapi di mobile */
     gap: 0.5rem;
     margin-bottom: 2rem;
     padding: 0.5rem;
@@ -309,7 +319,8 @@ tbody tr:hover {
 }
 
 .month-tabs a {
-    flex-grow: 1; /* Agar setiap tab memenuhi ruang */
+    flex-grow: 1;
+    /* Agar setiap tab memenuhi ruang */
     text-align: center;
     padding: 0.7rem 1rem;
     text-decoration: none;
@@ -320,13 +331,14 @@ tbody tr:hover {
 }
 
 .month-tabs a:hover {
-    background-color: #fceef3; /* Warna hover yang lebih soft */
+    background-color: #fceef3;
+    /* Warna hover yang lebih soft */
 }
 
 .month-tabs a.active {
     background-color: var(--accent-pink);
     color: var(--text-dark);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Tabel Rekapitulasi */
@@ -350,4 +362,102 @@ tbody tr:hover {
 
 .recap-table tbody tr:hover {
     background-color: var(--bg-light-pink);
+}
+
+.logout-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: #333333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-btn:hover,
+.logout-btn:focus {
+    background-color: #f3b6c0;
+    color: #000;
+}
+
+.icon-btn {
+    background: #ffe4e6;
+    /* soft pink */
+    border: none;
+    border-radius: 50%;
+    padding: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 0 0.2rem;
+    text-decoration: none;
+    /* for <a> */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: #fcbac5;
+    /* deeper pink on hover */
+    transform: scale(1.1);
+}
+
+a img,
+form img {
+    width: 30px;
+    height: 30px;
+    stroke: #b71c1c;
+    /* deep pinkish red */
+}
+
+.popup-error {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffe4e6;
+    /* soft pink background */
+    color: #b71c1c;
+    /* deep pinkish red for text */
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideDownFade 0.5s ease;
+    max-width: 90%;
+    text-align: center;
+}
+
+.popup-error ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.popup-error li {
+    font-size: 1rem;
+}
+
+@keyframes slideDownFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.text-center {
+    text-align: center;
 }

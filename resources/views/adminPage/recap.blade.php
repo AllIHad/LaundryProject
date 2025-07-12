@@ -1,13 +1,13 @@
 <x-adminLayouts>
     <main class="container">
         <nav class="month-tabs">
-            <a href="#" class="active">Januari</a>
+            <a href="#">Januari</a>
             <a href="#">Februari</a>
             <a href="#">Maret</a>
             <a href="#">April</a>
             <a href="#">Mei</a>
             <a href="#">Juni</a>
-            <a href="#">Juli</a>
+            <a href="#" class="active">Juli</a>
             <a href="#">Agustus</a>
         </nav>
 
@@ -15,47 +15,35 @@
             <table>
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>ID</th>
-                        <th>Nama</th>
-                        <th>Tanggal</th>
-                        <th>Berat</th>
-                        <th>Pesanan</th>
-                        <th>Layanan</th>
-                        <th>Total Harga</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Berat</th>
+                        <th class="text-center">Pesanan</th>
+                        <th class="text-center">Layanan</th>
+                        <th class="text-center">Total Harga</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($pesanans as $pesanan)
                     <tr>
-                        <td>1.</td>
-                        <td>001</td>
-                        <td>Ani</td>
-                        <td>12-01-2025</td>
-                        <td>5kg</td>
-                        <td>Cuci Setrika Pakaian</td>
-                        <td>Member</td>
-                        <td>Rp 48.000</td>
+                        <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $pesanan->id }}</td>
+                        <td class="text-center">{{ $pesanan->nama}}</td>
+                        <td class="text-center">{{ \Carbon\Carbon::parse($pesanan->created_at)->translatedFormat('l, d-m-Y') }}</td>
+                        <td class="text-center">{{ $pesanan->berat }} KG</td>
+                        <td class="text-center">{{ $pesanan->jenis_pemesanan }}</td>
+                        <td class="text-center">{{ $pesanan->jenis_layanan }}</td>
+                        <td class="text-center">Rp. {{ number_format($pesanan->total_harga, 2, ',', '.') }}</td>
                     </tr>
+                    @empty
                     <tr>
-                        <td>2.</td>
-                        <td>002</td>
-                        <td>Dimas</td>
-                        <td>13-01-2025</td>
-                        <td>2kg</td>
-                        <td>Cuci Setrika Jas</td>
-                        <td>Express</td>
-                        <td>Rp 48.000</td>
+                        <td colspan="7" style="text-align:center; padding: 1rem; color: #888;">
+                            Tidak ada data pesanan yang tersedia.
+                        </td>
                     </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>003</td>
-                        <td>Sari</td>
-                        <td>15-01-2025</td>
-                        <td>8kg</td>
-                        <td>Cuci Kering Selimut</td>
-                        <td>Reguler</td>
-                        <td>Rp 48.000</td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

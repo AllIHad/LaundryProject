@@ -6,55 +6,63 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Order Id</th>
-                            <th>Nama Kostumer</th>
-                            <th>Pesanan</th>
-                            <th>Tanggal</th>
-                            <th>Status</th>
-                            <th>Total harga</th>
+                            <th class="text-center">Order Id</th>
+                            <th class="text-center">Nama Kostumer</th>
+                            <th class="text-center">Pesanan</th>
+                            <th class="text-center">Tanggal</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Total harga</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse($pemesanan as $pesan)
                         <tr>
-                            <td>LNDRY-001</td>
-                            <td>Budi Santoso</td>
-                            <td>Cuci Setrika 5kg</td>
-                            <td>08-07-2025</td>
-                            <td>Selesai</td>
-                            <td>Rp 36.000</a></td>
+                            <td class="text-center">{{ $pesan->id }}</td>
+                            <td class="text-center">{{ $pesan->nama }}</td>
+                            <td class="text-center">{{ $pesan->jenis_pemesanan}}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($pesan->created_at)->translatedFormat('l, d-m-Y') }}</td>
+                            <td class="text-center">{{ $pesan->status}}</td>
+                            <td class="text-center">{{ $pesan->total_harga}}</td>
+                            @if($pesan->status == 'pending')
+                            <td class="text-center">
+                                <a href="{{ route('edit', $pesan->id) }}" class="icon-btn" title="Lihat">
+                                    <img src="img/detail-icon.svg" alt="detail order">
+                                </a>
+                                <form action="{{ route('delete', $pesan->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="icon-btn" title="Hapus">
+                                        <img src="img/trash-icon.svg" alt="delete order">
+                                    </button>
+                                </form>
+                            </td>
+                            @else
+                            <td class="text-center">
+                                <form action="{{ route('approve', $pesan->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="icon-btn" title="approve">
+                                        <img src="img/approve-icon.svg" alt="approve">
+                                    </button>
+                                </form>
+                                <form action="{{ route('delete', $pesan->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="icon-btn" title="Hapus">
+                                        <img src="img/trash-icon.svg" alt="delete order">
+                                    </button>
+                                </form>
+                            </td>
+                            @endif
                         </tr>
+                        @empty
                         <tr>
-                            <td>LNDRY-002</td>
-                            <td>Citra Lestari</td>
-                            <td>Cuci Kering 10kg</td>
-                            <td>08-07-2025</td>
-                            <td>Proses</td>
-                            <td>Rp 48.000</td>
+                            <td colspan="7" style="text-align:center; padding: 1rem; color: #888;">
+                                Tidak ada data pesanan yang tersedia.
+                            </td>
                         </tr>
-                        <tr>
-                            <td>LNDRY-003</td>
-                            <td>Ahmad Dahlan</td>
-                            <td>Cuci Setrika 2kg</td>
-                            <td>07-07-2025</td>
-                            <td>Selesai</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>LNDRY-004</td>
-                            <td>Dewi Anggraini</td>
-                            <td>Cuci Karpet</td>
-                            <td>09-07-2025</td>
-                            <td>Menunggu Pembayaran</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>LNDRY-005</td>
-                            <td>Eka Wijaya</td>
-                            <td>Cuci Selimut</td>
-                            <td>09-07-2025</td>
-                            <td>Pesanan Baru</td>
-                            <td>-</td>
-                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
