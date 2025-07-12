@@ -36,9 +36,18 @@
                 <div class="form-group">
                     <input type="text" placeholder="Masukkan Alamat Penjemputan" name="alamat_penjemputan">
                 </div>
+
                 <div class="form-group">
-                    <select name="jenis_pemesanan" required>
-                        <option disabled selected>Pilih Jenis Pesanan</option>
+                    <select name="jenis_layanan" id="jenis_layanan" required>
+                        <option disabled selected>Jenis Layanan</option>
+                        <option value="Biasa">Biasa</option>
+                        <option value="Express">Express</option>
+                        <option value="Member">Member</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select name="jenis_pemesanan" id="jenis_pemesanan" required disabled>
+                        <option value="" disabled selected>Pilih Jenis Pesanan</option>
                         <option value="Cuci Setrika">Cuci Setrika</option>
                         <option value="Cuci Kering">Cuci Kering</option>
                         <option value="Setrika Saja">Setrika Saja</option>
@@ -46,14 +55,7 @@
                         <option value="Layanan Tas">Layanan Tas</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <select name="jenis_layanan" required>
-                        <option disabled selected>Jenis Layanan</option>
-                        <option value="Biasa">Biasa</option>
-                        <option value="Express">Express</option>
-                        <option value="Member">Member</option>
-                    </select>
-                </div>
+                
                 <div class="form-group">
                     <input type="text" name="tanggal_penjemputan" placeholder="Tanggal Penjemputan" onfocus="(this.type='date')">
                 </div>
@@ -93,6 +95,57 @@
                     }, 6000); // visible for 4 seconds
                 }
             });
+
+            // script menyesuaikan jenis layanan dan pemesanan
+            document.addEventListener('DOMContentLoaded', function() {
+            const layananSelect = document.getElementById('jenis_layanan');
+            const pemesananSelect = document.getElementById('jenis_pemesanan');
+            const allPemesananOptions = Array.from(pemesananSelect.options).map(option => option.cloneNode(true));
+
+            function updatePemesananOptions(selectedValue) {
+               
+                pemesananSelect.innerHTML = '';
+
+                let filteredOptions;
+
+               
+                switch (selectedValue) {
+                    case 'Express':
+                        filteredOptions = allPemesananOptions.filter(option => 
+                            option.disabled || ['Layanan Sepatu', 'Layanan Tas'].includes(option.value)
+                        );
+                        break;
+                    
+                    case 'Member':
+                        filteredOptions = allPemesananOptions.filter(option => 
+                            option.disabled || ['Cuci Setrika', 'Cuci Kering', 'Setrika Saja'].includes(option.value)
+                        );
+                        break;
+                    
+                    case 'Biasa':
+                    default:
+                        filteredOptions = allPemesananOptions;
+                        break;
+                }
+
+                filteredOptions.forEach(option => {
+                    pemesananSelect.appendChild(option);
+                });
+
+                pemesananSelect.selectedIndex = 0;
+            }
+
+
+
+            layananSelect.addEventListener('change', function() {
+
+                // aktivasi pemesanan select setelah pilih jenis layanan
+                pemesananSelect.disabled = false;
+                
+                updatePemesananOptions(this.value);
+            });
+
+        });
         </script>
     </x-slot:javascript>
 </x-layouts>
