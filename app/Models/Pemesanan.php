@@ -22,4 +22,6 @@ class Pemesanan extends Model
         'berat',
         'total_harga',
     ];
+
+    
 }
