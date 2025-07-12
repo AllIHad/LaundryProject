@@ -19,7 +19,12 @@
                             <li><strong>Cuci Setrika</strong> - Rp. 6.000/kg</li>
                             <li><strong>Member :</strong> (Rp. 50.000/10kg)</li>
                         </ul>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        <a href="{{ route('daftar_memberPage') }}" style="float: right;" class="btn-member">Jadi Member</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                     <div class="card">
                         <img src="img/sepatu icon.png" alt="ikon sepatu" class="icon">
@@ -27,7 +32,11 @@
                         <ul>
                             <li><strong>Cuci Kering</strong> - Rp. 20.000</li>
                         </ul>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                     <div class="card">
                         <img src="img/tas icon.png" alt="ikon tas" class="icon">
@@ -35,7 +44,11 @@
                         <ul>
                             <li><strong>Cuci Kering</strong> - Rp. 15.000</li>
                         </ul>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                     <div class="card">
                         <img src="img/boneka.png" alt="ikon boneka" class="icon">
@@ -44,7 +57,11 @@
                             <li><strong>Cuci Kering :</strong> (Rp 10.000 - Rp 30.000)</li>
                         </ul>
                         <p class="note"><strong>Ket:</strong> Harga sesuai ukuran dari boneka</p>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                     <div class="card">
                         <img src="img/jas.png" alt="ikon jas" class="icon">
@@ -52,7 +69,11 @@
                         <ul>
                             <li><strong>Cuci Setrika :</strong> Rp. 30.000/pcs</li>
                         </ul>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                     <div class="card">
                         <img src="img/bed.png" alt="ikon bed cover" class="icon">
@@ -63,7 +84,11 @@
                             <li>Selimut - Rp. 20.000-30.000</li>
                         </ul>
                         <p class="note"><strong>Ket:</strong> Harga sesuai ukuran produk</p>
-                        <a href="#" class="btn-order">Pesan</a>
+                        @if(Auth::user())
+                        <a href="{{ route('kontak_pemesananPage') }}" class="btn-order">Pesan</a>
+                        @else
+                        <a href="{{ route('login') }}" class="btn-order">Pesan</a>
+                        @endif
                     </div>
                 </div>
             </div>
