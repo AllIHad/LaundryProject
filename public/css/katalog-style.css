@@ -189,6 +189,23 @@ header nav a.active {
     background-color: #e9e9e9;
 }
 
+.btn-member {
+    display: inline-block;
+    background-color: #faaec2;
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-weight: 500;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-member:hover {
+    background-color: #e9e9e9;
+}
+
 /* --- Steps Section --- */
 .steps {
     padding: 4rem 0;
