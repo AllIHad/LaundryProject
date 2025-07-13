@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_penjemputan' => '2025-07-14',
             'jam_penjemputan' => '16:46:00',
             'pengiriman' => 'antar',
-            'status' => 'pending',
+            'status' => 'Pending',
             'berat' => null,
             'total_harga' => null,
         ]);

@@ -21,9 +21,9 @@
                             <td class="text-center">{{ $pesan->id }}</td>
                             <td class="text-center">{{ $pesan->nama }}</td>
                             <td class="text-center">{{ $pesan->jenis_pemesanan}}</td>
-                            <td class="text-center">{{ \Carbon\Carbon::parse($pesan->created_at)->translatedFormat('l, d-m-Y') }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($pesan->created_at)->translatedFormat('d-m-Y') }}</td>
                             <td class="text-center">{{ $pesan->status}}</td>
-                            <td class="text-center">{{ $pesan->total_harga}}</td>
+                            <td class="text-center">Rp. {{ number_format($pesan->total_harga, 2, ',', '.') }}</td>
                             @if($pesan->status == 'Pending')
                             <td class="text-center">
                                 <a href="{{ route('edit', $pesan->id) }}" class="icon-btn" title="Lihat">

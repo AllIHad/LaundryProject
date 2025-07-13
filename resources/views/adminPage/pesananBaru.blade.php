@@ -11,7 +11,7 @@
     <main class="container">
         <div class="form-container">
             <h1 class="page-title">Laundry Packages</h1>
-            <form action="{{ isset($pesanan) ? route('store',$pesanan->id) : '#' }}" method="post">
+            <form action="{{ isset($pesanan) ? route('store',$pesanan->id) : '#' }}" method="{{ isset($pesanan) ? 'post' : 'get' }}">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

@@ -22,7 +22,6 @@
         <ul>
             <li><a href="{{ route('index') }}" class="{{ request()->routeIs('index') ? 'active' : '' }}">Beranda</a></li>
             <li><a href="{{ route('daftarPesanan') }}" class="{{ request()->routeIs('daftarPesanan') ? 'active' : '' }}">Daftar Pesanan</a></li>
-            <li><a href="{{ route('pesananBaru') }}" class="{{ request()->routeIs('pesananBaru') ? 'active' : '' }}">Pesanan Baru</a></li>
             <li><a href="{{ route('recap') }}" class="{{ request()->routeIs('recap') ? 'active' : '' }}">Recap</a></li>
             <form action="{{route ('logout')}}" method="post" class="main-nav">
                 @csrf

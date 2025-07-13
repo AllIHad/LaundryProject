@@ -11,10 +11,10 @@ class AdminController extends Controller
     //
     public function index()
     {
-        $pemesananBaru = Pemesanan::where('status', 'pending')->count();
-        $pemesananProcess = Pemesanan::where('status', 'process')->count();
-        $pemesananFinished = Pemesanan::where('status', 'finished')->count();
-        $members = Membership::latest()->get();
+        $pemesananBaru = Pemesanan::where('status', 'Pending')->count();
+        $pemesananProcess = Pemesanan::where('status', 'Process')->count();
+        $pemesananFinished = Pemesanan::where('status', 'Finished')->count();
+        $members = Membership::get();
 
         return view('adminPage.index', compact('pemesananBaru', 'pemesananProcess', 'pemesananFinished', 'members'));
     }
@@ -122,6 +122,19 @@ class AdminController extends Controller
         }
 
         $pesanan->delete();
+
+        return redirect()->back()->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function deleteMember($slug)
+    {
+        $member = Membership::where('id', $slug)->firstOrFail();
+
+        if (!$member) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan.');
+        }
+
+        $member->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
     }

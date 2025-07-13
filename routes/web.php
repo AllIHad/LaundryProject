@@ -27,7 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // dashboard Admin
 Route::middleware(['auth','role:admin'])->group(function(){
-    Route::get('/admin/index', [AdminController::class, 'index'])->name('index');
+    Route::get('/index', [AdminController::class, 'index'])->name('index');
     Route::get('/daftar-pesanan', [AdminController::class, 'daftarPesanan'])->name('daftarPesanan');
     Route::get('/pesanan-baru', [AdminController::class, 'pesananBaru'])->name('pesananBaru');
     Route::get('/recap/{month?}', [AdminController::class, 'recap'])->name('recap');
@@ -35,4 +35,5 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::put('/store/{slug}', [AdminController::class, 'store'])->name('store');
     Route::put('/approve/{slug}', [AdminController::class, 'approve'])->name('approve');
     Route::delete('/pesanan-baru/{slug}', [AdminController::class, 'delete'])->name('delete');
+    Route::delete('/delete-member/{slug}', [AdminController::class, 'deleteMember'])->name('deleteMember');
 });

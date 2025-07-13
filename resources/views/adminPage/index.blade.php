@@ -21,7 +21,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th class="text-center">ID</th>
+                            <th class="text-center">No</th>
                             <th class="text-center">Nama Kostumer</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Total Berat</th>
@@ -31,11 +31,19 @@
                     <tbody>
                         @forelse($members as $member)
                         <tr>
-                            <td class="text-center">{{ $member->id }}</td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $member->nama }}</td>
                             <td class="text-center">{{ $member->email }}</td>
                             <td class="text-center">{{ $member->member}} KG</td>
-                            <td class="text-center">{{ $member->user_id }}</td>
+                            <td class="text-center">
+                                <form action="{{ route('deleteMember', $member->id) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="icon-btn" title="Hapus">
+                                    <img src="img/trash-icon.svg" alt="delete member">
+                                </button>
+                                </form>
+                            </td>
                         </tr>
                         @empty
                         <tr>

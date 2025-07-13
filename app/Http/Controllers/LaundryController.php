@@ -53,6 +53,17 @@ class LaundryController extends Controller
         // Tambahkan user_id dari user yang sedang login
         $validated['user_id'] = Auth::id();
 
+        // check if the user has membership
+        if ($validated['jenis_layanan'] == 'Member') {
+            $hasMembership = Membership::where('user_id', Auth::id())->exists();
+
+            if (!$hasMembership) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'Anda tidak memiliki keanggotaan aktif untuk menggunakan layanan Member. Silakan daftar membership terlebih dahulu.');
+            }
+        }
+
         try {
             Pemesanan::create($validated);
         } catch (\Exception $e) {
@@ -101,7 +112,7 @@ class LaundryController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
-            'member' => 'required|in:30kg,50kg',
+            'member' => 'required|in:30,50',
         ], [
             'required' => ':attribute is required',
             'email' => 'Email is not  valid',
@@ -112,8 +123,23 @@ class LaundryController extends Controller
 
         $validated['user_id'] = Auth::id();
 
-        Membership::create($validated);
+        try {
+            Membership::create($validated);
+        } catch (\Exception $e) {
+            // Jika gagal simpan ke DB, kembalikan ke form dengan pesan error
+            return back()->with('error', 'Gagal menyimpan pesanan. Silakan coba lagi.');
+        }
 
-        return redirect()->route('landingPage')->with('success', 'Member registration successful!');
+        $pesan = "Halo Admin, saya ingin berlangganan Member laundry.\n\n" .
+            "Nama Pelanggan: *" . $validated['nama'] . "*\n" .
+            "Email Pelanggan: " . $validated['email'] . "\n" .
+            "Paket Langganan: " . $validated['member'] . "\n" .
+            "Mohon segera diproses ya. Terima kasih!";
+
+        $nomorAdmin = env('WHATSAPP_ADMIN_NUMBER', '6281266567456');
+
+        $whatsappUrl = "https://wa.me/{$nomorAdmin}?text=" . urlencode($pesan);
+
+        return redirect()->away($whatsappUrl);
     }
 }

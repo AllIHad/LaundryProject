@@ -15,11 +15,11 @@
 
             {{-- Ini adalah kode untuk menampilkan pesan error dari session --}}
             @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
+            <div class="popup-error" id="error-popup" >
+                {{ session('error') }}
+            </div>
             @endif
-            
+
             <form action="{{ route('order.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -55,7 +55,7 @@
                         <option value="Layanan Tas">Layanan Tas</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <input type="text" name="tanggal_penjemputan" placeholder="Tanggal Penjemputan" onfocus="(this.type='date')">
                 </div>
@@ -98,54 +98,54 @@
 
             // script menyesuaikan jenis layanan dan pemesanan
             document.addEventListener('DOMContentLoaded', function() {
-            const layananSelect = document.getElementById('jenis_layanan');
-            const pemesananSelect = document.getElementById('jenis_pemesanan');
-            const allPemesananOptions = Array.from(pemesananSelect.options).map(option => option.cloneNode(true));
+                const layananSelect = document.getElementById('jenis_layanan');
+                const pemesananSelect = document.getElementById('jenis_pemesanan');
+                const allPemesananOptions = Array.from(pemesananSelect.options).map(option => option.cloneNode(true));
 
-            function updatePemesananOptions(selectedValue) {
-               
-                pemesananSelect.innerHTML = '';
+                function updatePemesananOptions(selectedValue) {
 
-                let filteredOptions;
+                    pemesananSelect.innerHTML = '';
 
-               
-                switch (selectedValue) {
-                    case 'Express':
-                        filteredOptions = allPemesananOptions.filter(option => 
-                            option.disabled || ['Layanan Sepatu', 'Layanan Tas'].includes(option.value)
-                        );
-                        break;
-                    
-                    case 'Member':
-                        filteredOptions = allPemesananOptions.filter(option => 
-                            option.disabled || ['Cuci Setrika', 'Cuci Kering', 'Setrika Saja'].includes(option.value)
-                        );
-                        break;
-                    
-                    case 'Biasa':
-                    default:
-                        filteredOptions = allPemesananOptions;
-                        break;
+                    let filteredOptions;
+
+
+                    switch (selectedValue) {
+                        case 'Express':
+                            filteredOptions = allPemesananOptions.filter(option =>
+                                option.disabled || ['Layanan Sepatu', 'Layanan Tas'].includes(option.value)
+                            );
+                            break;
+
+                        case 'Member':
+                            filteredOptions = allPemesananOptions.filter(option =>
+                                option.disabled || ['Cuci Setrika', 'Cuci Kering', 'Setrika Saja'].includes(option.value)
+                            );
+                            break;
+
+                        case 'Biasa':
+                        default:
+                            filteredOptions = allPemesananOptions;
+                            break;
+                    }
+
+                    filteredOptions.forEach(option => {
+                        pemesananSelect.appendChild(option);
+                    });
+
+                    pemesananSelect.selectedIndex = 0;
                 }
 
-                filteredOptions.forEach(option => {
-                    pemesananSelect.appendChild(option);
+
+
+                layananSelect.addEventListener('change', function() {
+
+                    // aktivasi pemesanan select setelah pilih jenis layanan
+                    pemesananSelect.disabled = false;
+
+                    updatePemesananOptions(this.value);
                 });
 
-                pemesananSelect.selectedIndex = 0;
-            }
-
-
-
-            layananSelect.addEventListener('change', function() {
-
-                // aktivasi pemesanan select setelah pilih jenis layanan
-                pemesananSelect.disabled = false;
-                
-                updatePemesananOptions(this.value);
             });
-
-        });
         </script>
     </x-slot:javascript>
 </x-layouts>
