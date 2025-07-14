@@ -41,7 +41,7 @@
                         <td class="text-center">Rp. {{ number_format($pesanan->total_harga, 2, ',', '.') }}</td>
                         <td class="text-center">
                             <a href="{{ route('receipt', $pesanan->id) }}" class="icon-btn" title="Download" target="_blank">
-                                <img src="img/download-icon.svg" alt="Download Receipt">
+                                <img src="{{ asset('img/download-icon.svg') }}" alt="Download Receipt">
                             </a>
                         </td>
                     </tr>

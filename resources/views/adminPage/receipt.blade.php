@@ -124,7 +124,6 @@
                 height: 100%;
                 background: #ffe4e6 !important;
                 /* soft pink background on print */
-                -webkit-print-color-adjust: exact;
             }
 
             .btn-print {
