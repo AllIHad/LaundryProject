@@ -36,4 +36,5 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::put('/approve/{slug}', [AdminController::class, 'approve'])->name('approve');
     Route::delete('/pesanan-baru/{slug}', [AdminController::class, 'delete'])->name('delete');
     Route::delete('/delete-member/{slug}', [AdminController::class, 'deleteMember'])->name('deleteMember');
+    Route::get('/download-receipt/{slug}', [AdminController::class, 'receipt'])->name('receipt');
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Membership;
 use App\Models\Pemesanan;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -137,5 +138,14 @@ class AdminController extends Controller
         $member->delete();
 
         return redirect()->back()->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function receipt($slug)
+    {
+        $pesanan = Pemesanan::findOrFail($slug);
+
+        $pdf = Pdf::loadView('adminPage.receipt', compact('pesanan'));
+
+        return $pdf->stream('receipt_' . $pesanan->id . '.pdf');
     }
 }
