@@ -111,9 +111,7 @@
 
                     switch (selectedValue) {
                         case 'Express':
-                            filteredOptions = allPemesananOptions.filter(option =>
-                                option.disabled || ['Layanan Sepatu', 'Layanan Tas'].includes(option.value)
-                            );
+                            filteredOptions = allPemesananOptions;
                             break;
 
                         case 'Member':
